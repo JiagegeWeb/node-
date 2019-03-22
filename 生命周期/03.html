@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{firstname}}
+        {{fullname}}
+        <input type="text" v-model="firstname"/>
+    </div>
+    <script>
+        // watch   侦听属性   及时响应的去改变数据
+         new Vue({
+             el:"#app",
+             data:{
+                firstname:"tom",
+                lastname:"jack",
+                fullname:"4545"
+             },
+             watch:{
+                //  firstname(val){
+                //      console.log(val)
+                //    return this.fullname=val+this.lastname
+                //  },
+                //  lastname(val){
+                //      this.fullname=this.firstname+val
+                //  }
+                firstname(newval,oldval){
+                    console.log(arguments)
+                    this.fullname=newval+""+this.lastname
+                }
+             }
+         })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <style>
+        #app{width: 250px;height: 250px;border: 1px solid black}
+        li{float: left;width: 50px;height: 30px;list-style: none;
+        margin-right: 20px;background: red}
+        li.active{background: pink}
+        #add{width: 250px;height: 200px;position: relative;border: 1px solid green;margin-top: 50px}
+        .items{width: 250px;height: 200px;position: absolute;left: 0;top: 0;background: blue}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li  @click="list=0"  :class="{active:list==0}">1</li>
+            <li  @click="list=1"  :class="{active:list==1}">2</li>
+            <li  @click="list=2"  :class="{active:list==2}">3</li>
+        </ul>
+        <div id="add">
+            <div class="items" v-show="list==0" style="background:red">1</div>
+            <div class="items" v-show="list==1" style="background:hotpink">2</div>
+            <div class="items" v-show="list==2" style="background:greenyellow">3</div>
+        </div>
+    </div>
+        <script>
+                //v-show
+                 new Vue({
+                     el:"#app",
+                     data:{
+                       list:"0",
+                      
+                     }
+                     
+                 })
+            </script>
+</body>
+</html>

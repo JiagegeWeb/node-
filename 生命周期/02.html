@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 模板 -->
+       <div>{{msg.split('').reverse().join('')}}</div>
+       <!-- 函数 -->
+       <div>{{newmsg}}</div>
+    </div>
+    <script>
+       //计算属性  computed  作用:进行简便的运算  使模板的可维护性更好
+         var aa=new Vue({
+             el:"#app",
+             data:{
+                hide:true,
+                msg:"hello",
+                msg1:"hello"
+             },
+             methids:{
+
+             },
+             //setter  getter
+             computed:{
+                 newmsg(){
+                     return this.msg1.split('').reverse().join('')
+                 }
+
+             }
+             
+         })
+    </script>
+</body>
+</html>

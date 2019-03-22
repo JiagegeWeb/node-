@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{obj}}</p>
+			<input type="button" value="改变obj.a" @click="a"/>
+			<input type="button" value="改变obj.b" @click="b"/>
+			<input type="button" value="改变obj.c" @click="c"/>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					obj:{
+						a:{"name":"sss"},
+						b:{"name":"sss"},
+						c:{"name":{age:28}},
+					}
+				},
+				watch:{
+					obj:{
+						handler(newval,oldval){
+							console.log('obj被改变了');
+						},
+						immediate:true,
+						deep:true
+					}
+				},
+				methods:{
+					a(){
+						this.obj.a = '你好'
+					},
+					b(){
+						this.obj.b = 'hello'
+					},
+					c(){
+						this.obj.c = '******'
+					},
+				}
+			})
+		</script>
+	</body>
+</html>

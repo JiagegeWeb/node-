@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <style>
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- |  这个是管道通配符 -->
+        <div>{{msg | uppercase}}</div>
+        <div>{{msg1 | lowercase}}</div>
+        <div>{{msg | capitalize}}</div>
+    </div>
+    <script>
+        //过滤器  全局自定义过滤器  局部自定义过滤器
+
+        Vue.filter("uppercase",function(val){
+            return val.toUpperCase()    //换换成大写
+        })
+        Vue.filter("lowercase",function(val){
+            return val.toLowerCase()     //转换成小写
+        })
+        Vue.filter("capitalize",function(val){
+            return val.charAt(0).toUpperCase()+val.slice(1).toLowerCase()   //首字母大写
+        })
+         new Vue({
+             el:"#app",
+             data:{
+                 msg:"hello",
+                 msg1:"HELLO"
+             }
+         })
+    </script>
+</body>
+</html>

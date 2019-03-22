@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model="msg"/> -->
+        <div v-drag.limit style="width:100px;height: 100px;background: red;position: absolute"></div>
+        <!-- <input type="text" v-focus/> -->
+    </div>
+    <script>
+        //v-model    双向数据绑定
+        //双向数据绑定的原理
+        //object.defineProperty()      setter    getter
+        
+        //directive   自定义指令
+        //red名称        参数(元素  bind)
+        //注册全局自定义指令
+        // Vue.directive("red",function(el){  
+        //     console.log(arguments)
+        //     el.style.background="red"
+
+
+        // })
+        //钩子函数        实现拖拽
+        Vue.directive("drag",{
+            //绑定元素   只执行一次
+            
+            bind(el,binding){
+                console.log(arguments)
+                el.onmousedown=function(ev){
+                    var ev=ev||event
+                    var disX=ev.clientX-el.offsetLeft
+                    var disY=ev.clientY-el.offsetTop
+                    document.onmousemove=function(ev){
+                        var ev=ev||event
+                        var L=ev.clientX-disX
+                        var T=ev.clientY-disY
+                        if(binding.modifiers.limit){
+                            if(L<0){
+                                L=0
+                            }
+                            if(T<0){
+                                T=0
+                            }
+                            if(L>=document.documentElement.clientWidth-el.offsetWidth){
+                                L=document.documentElement.clientWidth-el.offsetWidth
+                            }
+                            if(T>=document.documentElement.clientHeight-el.offsetHeight){
+                                T=document.documentElement.clientHeight-el.offsetHeight
+                            }
+                        }
+                        el.style.left=L+"px"
+                        el.style.top=T+"px"
+                    }
+
+
+                }
+                document.onmouseup=function(){
+                    document.onmousedown=null
+                    document.onmousemove=null
+                }
+                return false;
+
+            },
+            //元素插入时被调用
+            inserted(){
+
+            },
+            //解绑元素时被调用
+            unbind(){
+
+            }
+        })
+         new Vue({
+             el:"#app",
+             data:{
+                 msg:"111"
+             },
+             methods:{
+
+             },
+             directives:{
+                 focus:{
+                    inserted(el){
+                     el.focus()
+
+                 }
+                 }
+
+             }
+         })
+    </script>
+</body>
+</html>

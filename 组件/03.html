@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+       <!-- 组件
+          全局组件
+          局部组件
+          父子
+          子父
+          兄弟
+    -->
+   <!-- <custom :msgs="msg"></custom>
+   <custom-list :sun="msg"></custom-list> -->
+   <customs>
+        
+    </customs>
+   
+    </div>
+    
+    <script>
+        Vue.component("custom",{
+            $emit:["jj"],
+            template:`
+            <div>我是父组件{{jj}}
+                </div>
+            `,
+           
+            
+        })
+        Vue.component("customs",{         
+            template:`
+            <div>我是子组件
+                <custom :jj="parent"></custom>
+                </div>
+            `,
+            data(){
+                return {
+                    parent:"123456"
+                }
+            }
+        })
+         var aa=new Vue({
+             el:"#app",
+             data:{
+                 msg:"parent"
+                
+             },
+             methids:{
+
+             },
+            //  components:{
+            //      "custom-list":{
+            //          props:["sun"],
+            //          template:`
+            //          <div>我是z组件{{sun}}</div>
+            //          `
+            //      }
+            //  }
+            
+            
+             
+         })
+    </script>
+</body>
+</html>

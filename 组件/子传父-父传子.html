@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+      <modal></modal>
+    </div>
+                 
+    <script>
+        Vue.component("modal",{
+          template:`
+                <div>我是全局组件{{getchildmsg}}
+                <modal-child :data="parent" @receve="get"></modal-child>
+                </div>
+          `,
+          data(){
+            return{
+              parent:"我是父组件的值",
+              getchildmsg:""
+            }
+          },
+          methods:{
+            get(val){
+              this.getchildmsg=val
+            }
+          }
+        })
+        Vue.component("modal-child",{
+          props:["data"],
+          template:`
+                <div>我是子组件{{data}}
+                <button @click="send">发送</button>
+                </div>
+          `,
+          data(){
+            return{
+              childmsg:"我是子组件里的值"
+            }
+          },
+          methods:{
+            send(){
+              this.$emit("receve",this.childmsg)
+            }
+          }
+
+        })
+    new Vue({
+        el:"#app",
+        data:{
+
+        }
+
+    })
+    </script>
+</body>
+</html>

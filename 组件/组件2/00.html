@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <custom></custom>
+    </div>
+    <script>
+        Vue.component("custom",{
+           provide:{"name":"tom"},
+            template:`
+            <div>我是第一个
+                <custom-two></custom-two>
+                <custom-three></custom-three>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:"我是one"
+                }
+            }
+        }),
+        Vue.component("custom-two",{
+            inject:["name"],
+            template:`
+            <div>我是第二个{{name}}</div>
+            `
+        }),
+        Vue.component("custom-three",{
+            inject:["name"],
+            template:`
+            <div>我是第三个{{name}}</div>
+            `
+        }),
+
+
+    new Vue({
+        data:{
+
+        }
+    }).$mount("#app")
+    </script>
+</body>
+</html>

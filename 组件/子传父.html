@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <h1>{{msg}}</h1>
+        <tem-fa :data="msg"></tem-fa>    -->
+
+        <div @sda="show"></div>
+        <h2>{{bb}}</h2>
+        <tem-so @func='show'></tem-so> 
+    </div>
+    <!-- <template id="tem">
+        <div>
+            <h3>我是子组件 tem {{ssss}}</h3>
+            <h4>我是h4</h4>
+        </div>
+    </template>  -->
+
+
+    <!-- 子组件 -->
+    <template id="tem2">
+        <div>
+            <h3>我是子组件 tem2</h3>
+            <!--  执行了父组件的  show()   -->
+            <button @click="obtain">获取父组件的数据</button>
+        </div>
+    </template>       
+    <script>
+        // var temFa = {
+        //     data(){
+        //         return {}
+        //     },
+        //     props:['data'],
+        //     template:"#tem",
+        // }
+
+        var temSo = {
+            template:"#tem2",
+            data(){
+                return {
+                    ssss:{
+                        name:"姓名",
+                        age:"年龄",
+                    }
+                }
+            },
+            //  激活绑定我身上的父组件的自定义方法  func
+            methods:{
+                obtain(){
+                    this.$emit('func',this.ssss)
+                }
+            }
+        }
+
+        // 父组件
+        var vm = new Vue({   // root
+            data:{
+                msg:"sahajdajj",
+                bb:""
+            },
+            methods:{
+                show(a){
+                    console.log('我是父组件的 show 方法');   
+                    this.bb = JSON.stringify(a);           
+                },
+
+            },
+            //  子组件
+            components:{
+                // temFa,
+                temSo
+            }
+        }).$mount("#app")
+    </script>
+</body>
+</html>

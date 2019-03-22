@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+        <div @click="parent" style="width:100px;height: 100px;background: pink">
+                <div  @click.stop="child" style="width:50px;height: 50px;background: red"></div>
+        </div>
+    </div>
+        <script>
+                //v-show
+                 new Vue({
+                     el:"#app",
+                     data:{
+                        hide:true
+                     },
+                     methods:{
+                         parent(){
+                             console.log("parent")
+                         },
+                         child(ev){
+                             ev=ev||event
+                             console.log("child")
+                            //  ev.cancelBubble=true阻止事件冒泡  js
+                            //    ev.stopPropagation()  jquery
+                         }
+                     }
+
+                 })
+            </script>
+</body>
+</html>

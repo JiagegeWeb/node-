@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <custom :foo="foo" :bar="bar" @foo="tiggreBar"></custom>
+    </div>
+    <script>
+        Vue.component("custom",{
+          props:{
+              foo:{
+                  type:String,
+                  default:""
+              },
+              bar:{
+                  type:String,
+                  default:""
+              },
+              
+
+          },
+          created(){
+                  console.log(this.$attrs)
+                  console.log(this.$listeners)
+                  this.$listeners.foo()
+              },
+            template:`
+            <div>我是组件{{foo}}--{{bar}}</div>
+            `,
+           
+        }),
+       
+
+
+    new Vue({
+        data:{
+            foo:"123",
+            bar:"456"
+
+        },
+        methods:{
+            tiggreFoo(){
+                console.log("foo")
+            },
+            tiggreBar(){
+                console.log("bar")
+            }
+        }
+    }).$mount("#app")
+    </script>
+</body>
+</html>

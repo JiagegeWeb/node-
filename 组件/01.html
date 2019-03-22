@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+       <!-- 组件
+          全局组件
+          局部组件
+          父子
+          子父
+          兄弟
+    -->
+    <custom></custom>
+    <custom-list></custom-list>
+    <blocktom></blocktom>
+    </div>
+    <script>
+         Vue.component("custom",{
+             template:`
+                <div>这是一个全局组件</div>
+             `
+         })
+         Vue.component("custom-list",{
+             template:`
+                <div>这是一个全局组件list</div>
+             `
+         })
+         var aa=new Vue({
+             el:"#app",
+             data:{
+                hide:true,
+                msg:"hello",
+                msg1:"hello"
+             },
+             methids:{
+
+             },
+             components:{
+                 blocktom:{
+                     template:`
+                     <div>这是一个局部组件</div>
+                     `
+                 }
+             }
+            
+             
+         })
+    </script>
+</body>
+</html>

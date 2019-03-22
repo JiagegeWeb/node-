@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="msg"/>
+        {{msg}}
+    </div>
+    <script>
+        //v-model    双向数据绑定
+        //双向数据绑定的原理
+        //object.defineProperty()      setter    getter
+         var aa=new Vue({
+             el:"#app",
+             data:{
+                hide:true,
+                msg:"4545"
+             },
+             methids:{
+
+             },
+             beforeCreate(){
+                 console.log("实例创建以前")
+                 console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             created(){
+                console.log("实例已经创建")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             beforeMount(){
+                console.log("实例挂载之前")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             mounted(){
+                console.log("实例已经挂载")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             beforeUpdate(){
+                console.log("实例更新之前")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             updated(){
+                console.log("实例更新")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             beforeDestroy(){
+                console.log("实例销毁之前")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+             destroyed(){
+                console.log("实例已经销毁")
+                console.log(this.$el)
+                 console.log(this.$data)
+                 console.log(this.msg)
+             },
+            //  aa.destroyed()
+         })
+    </script>
+</body>
+</html>

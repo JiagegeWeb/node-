@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+       <custom></custom>
+       <custom-brother></custom-brother>
+    </div>
+    <script>
+        var bus=new Vue()
+        Vue.component("custom",{
+            template:`
+            <div>我是哥哥组件{{getmsg}}
+                <button @click="send">兄传弟</button>
+                </div>
+            `,
+            data(){
+                return{
+                    parent:"我是哥哥里面的",
+                    getmsg:""
+                }
+            },
+            methods:{
+                send(){
+                    bus.$emit("receve",this.parent)
+                }
+            },
+            mounted(){
+                bus.$on("receve-brother",function(val){
+                    this.getmsg=val
+                }.bind(this))
+            }
+        })
+        Vue.component("custom-brother",{
+            template:`
+            <div>我是弟弟组件{{getparent}}
+                <button @click="get">弟传兄</button>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:"我是弟弟里面的",
+                    getparent:""
+                }
+            },
+            methods:{
+                get(){
+                    bus.$emit("receve-brother",this.msg)
+                }
+            },
+            mounted(){
+                bus.$on("receve",function(val){
+                    this.getparent=val
+                }.bind(this))
+                
+            }
+        })
+        new Vue({
+            data:{
+
+            }
+        }).$mount("#app")
+    </script>
+</body>
+</html>

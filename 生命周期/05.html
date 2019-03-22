@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{firstname}} -->
+        
+        <input type="text" v-model="msg.b.name"/>
+        <div>{{msg.b.name}}</div>
+    </div>
+    <script>
+        // watch   侦听属性   及时响应的去改变数据
+        //handler属性   immediate方法
+        //deep深度访问
+         new Vue({
+             el:"#app",
+             data:{
+                obj:{
+                    a:111,
+                   
+                },
+                msg:{"title":"a","b":{"name":"tom"}}
+             },
+             method:{
+
+            },
+             watch:{
+                
+               
+                  
+                   msg:{
+                       handler(newval,oldval){
+                           console.log(1)
+                           var val=newval.toString()
+                           this.msg.b.name=val
+                       }
+                   },
+                      immediate:true,
+                      deep:true
+                //    immediate:true   如果不加这个  firstname属性不会自己执行handler方法
+                }
+             
+         })
+    </script>
+</body>
+</html>

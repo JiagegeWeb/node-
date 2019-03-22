@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <style>
+          /* div{width: 100px;height: 100px;
+          border: 1px solid black} */
+          .red{background: red}
+          .da{width: 200px;height: 200px;}
+          .orange{
+              background: orange
+          }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <div :style="win"></div>
+    </div>
+    <script>
+        //class   字符串  数组  对象
+         new Vue({
+             el:"#app",
+             data:{
+                a:"red",
+                 b:false,
+                 win:{
+                     width:window.clientWidth+"px",
+                     height:"100px",
+                     background:"black"
+                 }
+             }
+         })
+    </script>
+</body>
+</html>

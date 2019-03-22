@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <custom></custom>
+    </div>
+    <script>
+        //子传父
+        Vue.component("custom",{
+            template:`
+                 <div>我是父组件{{getmsg}}
+                    <brother @receve="get"></brother>
+                    </div>
+            `,
+            data(){
+                return{
+                    getmsg:""
+                }
+            },
+            methods:{
+                get(val){
+                    this.getmsg=val
+                }
+            }
+        })
+        Vue.component("brother",{
+            template:`
+            <div>我是子组件
+                <button @click="send">发送</button>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:"我是子组件里的信息"
+                }
+            },
+            methods:{
+              send(){
+                  this.$emit("receve",this.msg)
+              }
+            }
+            
+        })
+    new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+    </script>
+</body>
+</html>

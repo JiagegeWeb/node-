@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" value="123" ref="input"/>
+       <custom ref="cus">
+           
+       </custom>
+       <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+    </div>
+    
+    <script>
+        Vue.component("custom",{
+            
+            
+            template:`<div>我是组件1
+                <custom-child ></custom-child></div>`,
+            data(){
+                return{
+                    arr:["1","2","3"]
+                }
+            }
+
+}),
+Vue.component("custom-child",{
+            props:["cus"],
+            
+            template:`<div>我是子组件2
+                </div>`,
+                methods:{
+
+                },
+                mounted(){
+                    console.log(this.$refs.cus.arr)
+                }
+            
+
+})
+    new Vue({
+        data:{
+            arr:""
+        },
+       
+        methods:{
+            
+            
+        },
+        mounted(){
+            // console.log(this.$refs.cus.arr);
+            this.arr=this.$refs.cus.arr;
+            // console.log(this.arr)
+
+        }
+
+    }).$mount("#app")
+    </script>
+</body>
+</html>

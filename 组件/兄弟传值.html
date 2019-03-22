@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+      <modal></modal>
+      <modal-bother></modal-bother>
+    </div>
+                 
+    <script>
+        var bus=new Vue()
+        Vue.component("modal",{
+          template:`
+                <div>我是哥哥组件{{getbrothers}}
+                <button @click="send">兄传弟</button>
+                </div>
+          `,
+          data(){
+            return{
+              brother:"我是哥哥组件里面的值",
+              getbrothers:""
+            }
+          },
+          methods:{
+            send(){
+                bus.$emit("receve",this.brother)
+            }
+          },
+          mounted(){
+            bus.$on("brother-recceve",function(val){
+              this.getbrothers=val
+            }.bind(this))
+          }
+        })
+        Vue.component("modal-bother",{
+          
+          template:`
+                <div>我是弟弟组件
+                {{getbrother}}
+                <button @click="get">弟传兄</button>
+                </div>
+          `,
+          data(){
+            return{
+              brothers:"我是弟弟里面的值",
+              getbrother:""
+            }
+          },
+          methods:{
+            get(){
+              bus.$emit("brother-recceve",this.brothers)
+            }
+          },
+          mounted(){
+            bus.$on("receve",function(val){
+                this.getbrother=val
+            }.bind(this))
+           
+          }
+
+        })
+    new Vue({
+        el:"#app",
+        data:{
+
+        }
+
+    })
+    </script>
+</body>
+</html>

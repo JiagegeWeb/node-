@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <custom >
+            <template slot-scope="result">
+                <ul>
+                    <li v-for="item in result.data">{{item}}</li>
+                </ul>
+            </template>
+        </custom>
+    </div>
+    
+    <script>
+        Vue.component("custom",{
+            template:`<div>
+                <slot :data="arr"></slot>
+                </div>`,
+            data(){
+                return {
+                    arr:["1","2","3"]
+                }
+            }
+})
+    new Vue({
+        data:{
+            arr:["1","2","3"]
+        },
+        methods:{
+           
+        }
+    }).$mount("#app")//挂载的另一种方式
+    </script>
+</body>
+</html>

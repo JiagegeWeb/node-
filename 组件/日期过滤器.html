@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h2>{{ list | getTime(true)}}</h2>
+    </div>
+    <script>
+        Vue.filter('getTime',function(el,select){
+            var date = new Date(el);
+            var Y = date.getFullYear();
+            var M = date.getMonth()+1;
+            zero(M)
+            var D = date.getDate();
+            zero(D)
+            var h = date.getHours();
+            zero(h);
+            var m = date.getMinutes();
+            zero(m);
+            var s = date.getSeconds();
+            zero(s);
+            if (select) {
+                var str = Y+'年'+M+'月'+D+'日'+' '+h+'时'+m+'分'+s+'秒';
+            } else {
+                var str = Y+'-'+M+'-'+D+'-'+' '+h+':'+m+':'+s;
+            }
+            
+            return str;
+            function zero(Ms){
+                Ms= Ms<10?('0'+Ms):Ms
+            }
+        })
+        var vm = new Vue({
+            el:"#app",
+            data:{
+                list:new Date()
+            }
+        })
+    </script>
+</body>
+</html>

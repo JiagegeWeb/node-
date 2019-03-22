@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <custom >
+            <ul slot="header">
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+            </ul>
+            <ul slot="footer">
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                </ul>
+        </custom>
+    </div>
+    
+    <script>
+        Vue.component("custom",{
+            template:`<div>我是子组件
+                <slot name="header"></slot>
+                <slot name="footer"></slot>
+                </div>`
+})
+    new Vue({
+        data:{
+            foo:"123",
+            bar:"456"
+        },
+        methods:{
+           
+        }
+    }).$mount("#app")//挂载的另一种方式
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./vue.min.js"></script>
+    <style>
+          /* div{width: 100px;height: 100px;
+          border: 1px solid black} */
+          .red{background: red}
+          .da{width: 200px;height: 200px;}
+          .orange{
+              background: orange
+          }
+    </style>
+</head>
+<body>
+    <div id="app">
+       <div v-show="hide" style="width:500px;height: 500px;background: gray"></div>
+       <!-- <div v-if="hide" style="width:500px;height: 500px;background: gray"></div> -->
+       <!-- <div v-if="hide==2" style="width:500px;height: 500px;background: blue"></div> -->
+       <!-- <div v-else style="width:500px;height: 500px;background: pink"></div> -->
+    </div>
+    <script>
+        //v-show
+         new Vue({
+             el:"#app",
+             data:{
+                hide:false
+             }
+         })
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+      <modal>
+          
+      </modal>
+    </div>
+                 
+    <script>
+        //provide   inject  2.2// provide:{"name":"tom"},
+        Vue.component("modal",{
+            provide:{"name":"tom"},
+
+          template:`
+                <div>我是父组件
+                        <modal-child></modal-child>
+                        
+                </div>
+          `,
+          data(){
+            return{
+              msg:"我是父组件里面的值"
+            }
+          },
+          methods:{
+           
+          }
+        })
+        Vue.component("modal-child",{
+        //   inject:["name"],
+          template:`
+                <div>我是子组件
+                {{name}}
+                <modal-childtwo></modal-childtwo>
+                </div>
+          `,
+          data(){
+            return{
+              childmsg:"我是子组件里的值"
+            }
+          },
+          methods:{
+            
+          }
+
+        })
+        Vue.component("modal-childtwo",{
+          inject:["name"],
+          template:`
+                <div>我是子组件
+                {{name}}
+                </div>
+          `,
+          data(){
+            return{
+              childmsg:"我是子组件里的值"
+            }
+          },
+          methods:{
+            
+          }
+
+        })
+    new Vue({
+        el:"#app",
+        data:{
+
+        }
+
+    })
+    </script>
+</body>
+</html>
